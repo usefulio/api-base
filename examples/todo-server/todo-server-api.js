@@ -26,7 +26,6 @@ if (Meteor.isServer) {
 
 	API.methods({
 		addTask: function (text) {
-			console.log('addTask', this.connection.identity.userId);
 			// Make sure the user is logged in before inserting a task
 			if (!this.connection.identity || !this.connection.identity.userId) {
 				throw new Meteor.Error("not-authorized");
