@@ -17,6 +17,16 @@ Specifically, it provides mechanisms for:
 * authenticating direct collection access
 * automatically reconnecting to your API both on the server and the client
 
+__Table of Contents__
+
+- [Meteor API Fundamentals](#meteor-api-fundamentals)
+- [API Server Base Package](#api-server-base-package)
+    - [Usage](#usage)
+    - [API](#api)
+- [API Client Base Package](#api-client-base-package)
+    - [Usage](#usage)
+    - [API](#api)
+
 __Folder Structure__
 
 `packages/api-client`: Meteor package to use as a base for creating your own API client package
@@ -67,7 +77,7 @@ identify them to your api server.
 as users register to the 3rd party Meteor application. This package
 relies on `accounts-base` in order to do that.
 
-# `useful:api-server`
+# API Server Base Package
 
 Under the hood, this package uses `jagi:astronomy` for extendability.
 
@@ -237,7 +247,7 @@ By default, this error is thrown when a connection to your API
 server attempts to do something before identifying itself.
 However, you can override this method to customize the error thrown.
 
-# `useful:api-client`
+# API Client Base Package
 
 The API client package handles the fundamentals of connecting to and
 authenticating with your API server that you pass to `API.config`. It is
