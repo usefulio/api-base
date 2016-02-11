@@ -67,7 +67,7 @@ identify them to your api server.
 as users register to the 3rd party Meteor application. This package
 relies on `accounts-base` in order to do that.
 
-# useful:api-server
+# `useful:api-server`
 
 Under the hood, this package uses `jagi:astronomy` for extendability.
 
@@ -75,13 +75,19 @@ Under the hood, this package uses `jagi:astronomy` for extendability.
 
 In your API server, `meteor add useful:api-server`.
 
+__A Note on API Extensibility__
+
+You can extend what fields and methods are available on the `API.App`, 
+`API.Client`, `API.Key`, `API.ClientKey` and `API.Identity` object by
+calling `API.<Model>.extend({})` and passing in valid `jagi:astronomy` v2+ options.
+
 ## API
 
-#### `API.App`
+#### API.App
 _client, server_
 
 Container for the public and private keys that a 3rd party Meteor app
-can use to connect to your API.
+can use to connect to your API. Astronomy model.
 
 Example:
 ```json
@@ -94,22 +100,22 @@ Example:
 }
 ```
 
-#### `<App instance>.regenerateKeys()`
+#### <App instance>.regenerateKeys()
 _client, server_
 
 Reset the public/private key pair for this `App` instance. You still must call
 `<App instance>.save()` to persist the change.
 
-#### `API.Client`
+#### API.Client
 _client, server_
 
 Container for one `Meteor.user` of a 3rd party Meteor app that is using
 your API. It mainly provides a way for you to trust that a browser client
 using an `App`'s public key is authentic, because it will have its own
-`personal` key as well.
+`personal` key as well. Astronomy model.
 
 Example:
-```json
+```js
 {
     "_id" : "d6Sy4Mca9u4mL8hyr",
     "appId" : "t7Cv4itN8mFsY9tNd",
@@ -120,42 +126,38 @@ Example:
 }
 ```
 
-#### `<Client instance>.regenerateKeys()`
+#### <Client instance>.regenerateKeys()
 _client, server_
 
 Reset the personal key pair for this `Client` instance. You still must call
 `<Client instance>.save()` to persist the change.
 
-#### `API.Key`
+#### API.Key
 _client, server_
 
-Model of the public/private key pair for an `App`.
+Model of the public/private key pair for an `App`. Astronomy model.
 
-#### `API.ClientKey`
+#### API.ClientKey
 _client, server_
 
-Model of the personal key for `Client`.
+Model of the personal key for `Client`. Astronomy model.
 
-#### `API.Identity`
+#### API.Identity
 _server only_
 
-An object usually available as `this.connection.identity` within your code. By default, it has the following fields:
+An object usually available as `this.connection.identity` within your code.  Astronomy model. By default, it has the following fields:
 
-`identity.appId` string _id of the App that this identity belongs to.
-
-`identity.clientId` string _id of the Client that this identity belongs to, if there is one (when connecting with a `private` key, this will be null).
-
-`identity.privileged` boolean, true if this identity corresponds to a `private` key, false otherwise.
+* `identity.appId` string _id of the App that this identity belongs to.
+* `identity.clientId` string _id of the Client that this identity belongs to, if there is one (when connecting with a `private` key, this will be null).
+* `identity.privileged` boolean, true if this identity corresponds to a `private` key, false otherwise.
+* `identity.userId` returns the `userId` that this instance this identity belongs to in the 3rd party app.
 
 And by default, it has the following methods:
 
-`identity.app()` returns the `App` instance this identity belongs to.
+* `identity.app()` returns the `App` instance this identity belongs to.
+* `identity.client()` returns the `Client` instance this identity belongs to.
 
-`identity.client()` returns the `Client` instance this identity belongs to.
-
-`identity.userId` returns the `userId` that this instance this identity belongs to in the 3rd party app.
-
-#### `API.methods(options)`
+#### API.methods(options)
 _server only_
 
 `options` follows the same format as `Meteor.methods`, namely it should be an object of the form:
@@ -173,8 +175,8 @@ Inside your method, `this.connection.identity` will refer
 to an `API.Identity` instance, which you can use to check
 if the request is coming from a 3rd party server or client.
 
-#### `API.publish(name, function)`
-__server only__
+#### API.publish(name, function)
+_server only_
 
 This follows the same format as `Meteor.publish`.
 
@@ -187,7 +189,7 @@ if the request is coming from a 3rd party server or client.
 For example, you can use the `identity.appId` to modify any selectors to 
 limit the publication to only documents owned by that `App`.
 
-#### `API.interceptCollection(Collection, options)`
+#### API.interceptCollection(Collection, options)
 _server only_
 
 Provide direct collection manipulation, e.g. `Collection.insert/update/remove`
@@ -228,20 +230,14 @@ if the request is coming from a 3rd party server or client.
 For example, you can use the `identity.appId` to modify any selectors to 
 limit the operation to only documents owned by that `App`.
 
-#### `API.throwNotAuthorizedException()`
+#### API.throwNotAuthorizedException()
 _server only_
 
 By default, this error is thrown when a connection to your API
 server attempts to do something before identifying itself.
 However, you can override this method to customize the error thrown.
 
-#### API Extensibility
-
-You can extend what fields and methods are available on the `API.App`, 
-`API.Client`, `API.Key`, `API.ClientKey` and `API.Identity` object by
-calling `API.<Model>.extend({})` and passing in valid `jagi:astronomy` v2+ options.
-
-# useful:api-client
+# `useful:api-client`
 
 The API client package handles the fundamentals of connecting to and
 authenticating with your API server that you pass to `API.config`. It is
@@ -273,16 +269,16 @@ See `examples/packages/todo-api` for an example usage of this package.
 
 ## API
 
-#### `API.configure(options)`
+#### API.configure(options)
 _client, server_
 
 On the _server_, __options__ looks like:
 
 ```json
 {
-    server: "(required) url of your api server, e.g. http://api.myapp.com or https://api.myapp.com"
-    , privateKey: "(required) private key for this app"
-    , apiName: "(required) presumably unique name of your api, alphanumeric only"
+    "server": "(required) url of your api server, e.g. http://api.myapp.com or https://api.myapp.com"
+    , "privateKey": "(required) private key for this app"
+    , "apiName": "(required) presumably unique name of your api, alphanumeric only"
 }
 ```
 
@@ -290,38 +286,38 @@ On the _client_, __options__ looks like:
 
 ```json
 {
-    server: "(required) url of your api server, e.g. http://api.myapp.com or https://api.myapp.com"
-    , publicKey: "(required) public key for this app"
-    , apiName: "(required) presumably unique name of your api, alphanumeric only"
+    "server": "(required) url of your api server, e.g. http://api.myapp.com or https://api.myapp.com"
+    , "publicKey": "(required) public key for this app"
+    , "apiName": "(required) presumably unique name of your api, alphanumeric only"
 }
 ```
 
-#### `API.status`
+#### API.status()
 _client, server_
 
-Equivalent to `Meteor.status`, but targets the connection to your api server.
+Equivalent to `Meteor.status()`, but targets the connection to your api server.
 
-#### `API.call`
+#### API.call(...)
 _client, server_
 
 Equivalent to `Meteor.call`, but targets the connection to your api server.
 
-#### `API.apply`
+#### API.apply(...)
 _client, server_
 
 Equivalent to `Meteor.apply`, but targets the connection to your api server.
 
-#### `API.subscribe`
+#### API.subscribe(...)
 _client, server_
 
 Equivalent to `Meteor.subscribe`, but targets the connection to your api server.
 
-#### `API.disconnect`
+#### API.disconnect()
 _client, server_
 
 Equivalent to `Meteor.disconnect`, but targets the connection to your api server.
 
-#### `API.reconnect`
+#### API.reconnect()
 _client, server_
 
 Equivalent to `Meteor.reconnect`, but targets the connection to your api server.
