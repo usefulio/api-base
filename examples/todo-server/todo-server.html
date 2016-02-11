@@ -1,0 +1,19 @@
+<head>
+	<title>The Todo API Server</title>
+</head>
+
+<body>
+	<h1>Todo API Server "Management"</h1>
+	<h3>List of Apps</h3>
+
+	<ul>
+		{{#each apps}}
+			{{> App}}
+		{{/each}}
+	</ul>
+	<button class="new-app">New App</button>
+</body>
+
+<template name="App">
+	<li>Public: {{key.public}}<br>Private: {{key.private}}<br><br></li>
+</template>

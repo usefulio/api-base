@@ -1,0 +1,10 @@
+{
+	"public": {
+		"todo-api": {
+			"publicKey": "public-nDjwGvEpE2ERWogVWCFhNWzhxEcVxiZqWCzWaYLnPW8"
+		}
+	}
+	, "todo-api": {
+		"privateKey": "private-Imwj_qQHXt-Wa7Zzlgu7998d2KDNPIgXBT6Wqm4fhRX"
+	}
+}

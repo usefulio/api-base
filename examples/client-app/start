@@ -1,0 +1,1 @@
+PACKAGE_DIRS=../packages:../../packages meteor run "$@" --settings config.json --port 4000
