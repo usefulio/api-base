@@ -1,12 +1,10 @@
-_.extend(API, {
-	_identificationIntervalId: undefined
-	, _needsToIdentify: true
+_.extend(API.prototype, {
 	/**
 		On the server, identify sets up an interval
 		to check for disconnects to the API server and attempt
 		to re-connect (which the DDP lib handles for us) and re-identify itself.
 	**/
-	, _identify: function () {
+	_identify: function () {
 		var self = this
 			, options = self.options;
 
@@ -45,4 +43,9 @@ _.extend(API, {
 			}
 		});
 	}
+});
+
+API.onInitialization(function (api) {
+	api._identificationIntervalId = undefined;
+	api._needsToIdentify = true;
 });

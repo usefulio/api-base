@@ -259,7 +259,7 @@ client and the server side of a 3rd party application once `.configure()`
 is called.
 
 The recommendation is to create your own namespace, like `MyAPI` and 
-initially set it `= API;`. Then you can expose additional functions/
+initially set it `= new API();`. Then you can expose additional functions/
 capabilities off your `MyAPI` namespace that makes it easy to use your API
 as you see fit.
 

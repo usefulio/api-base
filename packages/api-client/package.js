@@ -1,6 +1,6 @@
 Package.describe({
   name: 'useful:api-client',
-  version: '0.1.0',
+  version: '0.1.1',
   // Brief, one-line summary of the package.
   summary: 'Base package for building a DDP-API client that communicates with a `useful:api-server` server.',
   // URL to the Git repository containing the source code for this package.
