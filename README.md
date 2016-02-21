@@ -302,6 +302,10 @@ On the _client_, __options__ looks like:
 }
 ```
 
+#### API.collection(name)
+
+Creates and returns a new Mongo collection that uses this `API` instance's connection to the api server.
+
 #### API.status()
 _client, server_
 

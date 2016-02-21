@@ -24,7 +24,7 @@ id-map@1.0.4
 jagi:astronomy@2.0.0-rc.4
 jagi:reactive-map@2.0.0
 jquery@1.11.4
-local-test:useful:api-server@0.1.0
+local-test:useful:api-server@0.1.1
 logging@1.0.8
 meteor@1.1.10
 minimongo@1.0.10
@@ -45,6 +45,6 @@ tinytest@1.0.6
 tracker@1.0.9
 ui@1.0.8
 underscore@1.0.4
-useful:api-server@0.1.0
+useful:api-server@0.1.1
 webapp@1.2.3
 webapp-hashing@1.0.5

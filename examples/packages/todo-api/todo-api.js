@@ -18,5 +18,5 @@ if (Meteor.isServer) {
 }
 
 _.extend(TodoAPI, {
-	Tasks: new Mongo.Collection('tasks', { connection: TodoAPI.connection })
+	Tasks: TodoAPI.collection('tasks')
 });

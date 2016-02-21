@@ -27,7 +27,7 @@ html-tools@1.0.5
 htmljs@1.0.5
 id-map@1.0.4
 jquery@1.11.4
-local-test:useful:api-client@0.1.0
+local-test:useful:api-client@0.1.2
 localstorage@1.0.5
 logging@1.0.8
 meteor@1.1.10
@@ -50,6 +50,6 @@ tinytest@1.0.6
 tracker@1.0.9
 ui@1.0.8
 underscore@1.0.4
-useful:api-client@0.1.0
+useful:api-client@0.1.2
 webapp@1.2.3
 webapp-hashing@1.0.5

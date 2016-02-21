@@ -1,6 +1,6 @@
 Package.describe({
   name: 'useful:api-client',
-  version: '0.1.1',
+  version: '0.1.2',
   // Brief, one-line summary of the package.
   summary: 'Base package for building a DDP-API client that communicates with a `useful:api-server` server.',
   // URL to the Git repository containing the source code for this package.
@@ -16,6 +16,7 @@ Package.onUse(function(api) {
     'ecmascript'
     , 'underscore'
     , 'ddp'
+    , 'mongo'
     , 'accounts-base'
     , 'browser-policy'
   ]);

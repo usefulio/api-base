@@ -7,6 +7,7 @@ API = function () {
 		hook(self);
 	});
 };
+
 API.prototype.configure = function (options) {
 	var self = this;
 	
@@ -22,6 +23,11 @@ API.prototype.configure = function (options) {
 	});
 
 	self._identify();
+};
+
+API.prototype.collection = function (name) {
+	var self = this;
+	return new Mongo.Collection(name, { connection: self.connection });
 };
 
 API._initializationHooks = [];
