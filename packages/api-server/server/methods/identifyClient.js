@@ -9,7 +9,7 @@ Meteor.methods({
 		var client = personalKey ? Client.findOne({
 				appId: app._id
 				, 'key.personal': personalKey
-			}) : false ;
+			}) : false;
 
 		var identity = new Identity({
 			appId: app._id
